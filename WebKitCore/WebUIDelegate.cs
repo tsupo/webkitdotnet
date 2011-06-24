@@ -91,6 +91,10 @@ namespace WebKit
 
         public int contextMenuItemsForElement(WebView sender, CFDictionaryPropertyBag element, int defaultItemsHMenu)
         {
+            if (!owner.IsWebBrowserContextMenuEnabled)  /* {@@} */
+            {                                           /* {@@} */
+                owner.ContextMenuShow();                /* {@@} */
+            }                                           /* {@@} */
             return owner.IsWebBrowserContextMenuEnabled ? defaultItemsHMenu : 0;
         }
 
