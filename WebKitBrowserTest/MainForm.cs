@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2009, Peter Nelson (charn.opcode@gmail.com)
  * All rights reserved.
  * 
@@ -92,6 +92,8 @@ namespace WebKitBrowserTest
             currentPage.browser.DownloadBegin += new FileDownloadBeginEventHandler(browser_DownloadBegin);
             currentPage.browser.NewWindowRequest += new NewWindowRequestEventHandler(browser_NewWindowRequest);
             currentPage.browser.NewWindowCreated += new NewWindowCreatedEventHandler(browser_NewWindowCreated);
+
+            currentPage.WindowClosing += new EventHandler(currentPage_WindowClosing);   /* {@@} */
         }
 
         void browser_NewWindowCreated(object sender, NewWindowCreatedEventArgs args)
@@ -142,6 +144,8 @@ namespace WebKitBrowserTest
             currentPage.browser.DocumentTitleChanged -= browser_DocumentTitleChanged;
             currentPage.browser.NewWindowCreated -= browser_NewWindowCreated;
             currentPage.browser.NewWindowRequest -= browser_NewWindowRequest;
+
+            currentPage.WindowClosing -= currentPage_WindowClosing; /* {@@} */
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -342,5 +346,14 @@ function testtest(dog) {
                 currentPage.browser.UserName = passDG.Username;
             }
         }
+
+        /* {@@} */
+        private void currentPage_WindowClosing(object sender, EventArgs e)
+        {
+            WebBrowserTabPage tab = (WebBrowserTabPage)sender;
+            if (tab == currentPage)
+                closeTabToolStripMenuItem_Click(sender, e);
+        }
+        /* {@@} */
     }
 }
