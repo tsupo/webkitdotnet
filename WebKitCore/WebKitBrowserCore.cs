@@ -881,7 +881,8 @@ namespace WebKit
             {
                 // prepend with "http://" if url not well formed
                 if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
-                    url = "http://" + url;
+                    if (!url.StartsWith("http://") && !url.StartsWith("https://")) /* {@@} */
+                        url = "http://" + url;
 
                 activationContext.Activate();
 
