@@ -587,6 +587,9 @@ namespace WebKit
             get { return LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
 
+        /// <summary>
+        /// add to(or remove from) ContextMenuOpen on WebKitCore
+        /// </summary>
         public event EventHandler ContextMenuOpen       /* {@@} */
         {                                               /* {@@} */
             add { core.ContextMenuOpen += value; }      /* {@@} */
