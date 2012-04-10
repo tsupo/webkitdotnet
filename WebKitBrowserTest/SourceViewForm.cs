@@ -43,6 +43,8 @@ namespace WebKitBrowserTest
         {
             InitializeComponent();
             textBox.Text = text;
+            textBox.Select(0, 0);                   /* @@ */
+            textBox.ScrollBars = ScrollBars.Both;   /* @@ */            
             this.current = current;
         }
 
